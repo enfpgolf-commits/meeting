@@ -202,7 +202,66 @@ td input{width:100%;min-width:0;border:1px solid var(--line);border-radius:5px;p
 
 .loading{padding:60px 24px;text-align:center;color:var(--muted)}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:11px 16px;border-radius:8px;font-size:14px;max-width:min(560px,calc(100vw - 32px));box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:20}
-@media (max-width:520px){.doc-head,.doc-body,.guide{padding-left:16px;padding-right:16px}.clock{font-size:32px}.title-in{font-size:19px}}
+@media (max-width:520px){.doc-body,.guide,.info,.tabs-row{padding-left:14px;padding-right:14px}.clock{font-size:30px}.title-in{font-size:18px}}
+/* 기본 정보 영역 */
+.info{padding:14px 18px 12px;border-bottom:1px solid var(--line);display:grid;gap:8px;background:var(--panel);border-radius:var(--r) var(--r) 0 0}
+.info-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.info-top .doc-no{font:500 12px var(--f-mono);color:var(--muted);letter-spacing:.04em}
+.info-hint{margin-left:auto;font-size:12px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.info-hint svg{width:12px;height:12px}
+.info-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:8px 10px}
+.info-grid label{display:grid;gap:3px;min-width:0}
+.info-grid .f-who{grid-column:1/-1}
+.info-grid input{width:100%;min-width:0;border:1px solid var(--line);background:var(--sunk);border-radius:7px;padding:7px 10px;min-height:40px}
+.info-grid input:hover{border-color:var(--muted)}
+.info-grid .title-in{font-size:18px;padding:6px 10px}
+@media (max-width:700px){.info-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.info-grid .f-title{grid-column:1/-1}}
+.tabs-row{padding:0 18px}
+.tabs-row .tabs{border-bottom:1px solid var(--line)}
+.doc-body{padding:14px 18px 18px;gap:14px}
+.w-grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.w{padding:10px 12px 12px;gap:6px;font-size:14px;line-height:1.55}
+.w.ph{border-style:dashed;background:var(--sunk)}
+.overview{padding:12px 14px}
+.ph-note{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--accent-soft);color:var(--ink);border-radius:8px;padding:10px 14px;font-size:14px}
+.ph-note .btn{margin-left:auto}
+/* 설정 접기 */
+.setcard summary{display:flex;align-items:baseline;gap:10px;cursor:pointer;list-style:none}
+.setcard summary::-webkit-details-marker{display:none}
+.setcard summary h2{margin:0;font-size:14px}
+.setcard summary::after{content:"▾";margin-left:auto;color:var(--muted)}
+.setcard[open] summary::after{content:"▴"}
+/* 팝업 */
+.modal{position:fixed;inset:0;z-index:30;background:rgba(10,14,22,.55);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.modal-box{background:var(--panel);color:var(--ink);border-radius:14px;width:min(860px,100%);max-height:100%;overflow:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.modal-x{position:sticky;top:10px;float:right;margin:10px 10px 0 0;background:var(--sunk);z-index:1}
+.modal .guide{padding:22px 24px 26px}
+/* iPad 한 화면 대시보드 (가로·세로 모두) */
+@media (min-width:901px){
+  html,body{height:100%}
+  body{height:100dvh;overflow:hidden;display:flex;flex-direction:column;padding-block:max(10px,env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-bottom,0px))}
+  .topbar{flex:none;margin-bottom:10px;max-width:none;width:100%}
+  .app{flex:1;min-height:0;align-items:stretch;grid-template-columns:minmax(0,1fr) 360px;gap:12px;max-width:none;width:100%}
+  .doc{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+  .doc-scroll{flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch}
+  .side{min-height:0;display:flex;flex-direction:column;gap:10px}
+  .side > *{flex:none}
+  .side .listcard{flex:1;min-height:120px;display:flex;flex-direction:column}
+  #list{flex:1;min-height:0;overflow:auto}
+  .card{padding:12px 14px}
+  .card-h{margin-bottom:8px}
+  .micbox{margin:0 0 10px;gap:14px}
+  .mic{width:60px;height:60px}.mic svg{width:28px;height:28px}
+  .clock{font-size:30px;margin-top:2px}
+  .ctrls .btn{min-height:42px}
+  .live{margin-top:8px;min-height:48px;max-height:86px}
+  .wide-btn{min-height:46px}
+  .sub{margin-top:6px}
+  .transcript textarea{min-height:0;height:calc(100dvh - 330px)}
+}
+@media (min-width:901px) and (max-width:1100px){.app{grid-template-columns:minmax(0,1fr) 320px}}
+.ctrls .btn{white-space:nowrap;padding:8px 4px;font-size:14.5px;gap:6px}
+@media (max-width:1100px){.info-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.info-grid .f-title{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -216,7 +275,19 @@ td input{width:100%;min-width:0;border:1px solid var(--line);border-radius:5px;p
 </header>
 
 <main class="app">
-  <section class="doc panel" id="doc" aria-label="회의록"><div class="loading">저장된 회의록을 불러오는 중…</div></section>
+  <section class="doc panel" id="docPanel" aria-label="회의록">
+    <div class="info">
+      <div class="info-top"><span class="doc-no" id="docNo">—</span><span id="docBadges"></span><span class="info-hint"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.5 2.5l3 3L6 13H3v-3z"/></svg>회의 기본 정보 — 칸을 눌러 바로 입력</span></div>
+      <div class="info-grid">
+        <label class="f-title"><span class="in-label">회의 제목</span><input class="title-in" id="inTitle" placeholder="회의 제목을 입력하세요"></label>
+        <label><span class="in-label">일시</span><input type="datetime-local" id="inDate"></label>
+        <label><span class="in-label">장소</span><input id="inPlace" placeholder="예: 본사 3층 회의실"></label>
+        <label class="f-who"><span class="in-label">참석자 (쉼표로 구분)</span><input id="inWho" placeholder="예: 박 책임, 김민수 선임, 최지훈 연구원"></label>
+      </div>
+    </div>
+    <div class="tabs-row" id="docTabs"></div>
+    <div class="doc-scroll" id="doc"><div class="loading">저장된 회의록을 불러오는 중…</div></div>
+  </section>
 
   <aside class="side">
     <section class="panel card" aria-label="녹음">
@@ -239,7 +310,7 @@ td input{width:100%;min-width:0;border:1px solid var(--line);border-radius:5px;p
       <p class="sub" id="writeSub"></p>
     </section>
 
-    <section class="panel card" aria-label="저장된 회의록">
+    <section class="panel card listcard" aria-label="저장된 회의록">
       <div class="card-h"><h2>저장된 회의록</h2>
         <div class="files-tools">
           <button class="btn btn-sm" id="bNew">+ 새 회의</button>
@@ -250,19 +321,25 @@ td input{width:100%;min-width:0;border:1px solid var(--line);border-radius:5px;p
       <div id="list"><p class="list-empty">불러오는 중…</p></div>
     </section>
 
-    <section class="panel card" aria-label="설정">
-      <div class="card-h"><h2>설정</h2></div>
-      <div class="fields">
+    <details class="panel card setcard" aria-label="설정">
+      <summary><h2>설정</h2><span class="hint">자동 작성 · 언어 · API 키</span></summary>
+      <div class="fields" style="margin-top:10px">
         <label class="check"><input type="checkbox" id="fAuto" checked> 정지하면 회의록 자동 작성</label>
         <div class="field" id="langField"><label for="fLang">음성 인식 언어</label>
           <select id="fLang"><option value="ko-KR">한국어</option><option value="en-US">English (US)</option><option value="ja-JP">日本語</option><option value="zh-CN">中文</option></select></div>
         <div class="field"><label for="fKey">Claude API 키 (선택 — 넣으면 AI가 더 자연스럽게 정리, 사용료 별도)</label><input id="fKey" type="password" autocomplete="off" placeholder="비워 두면 자동 분류로 정리"></div>
         <p class="hint" id="modeHint"></p>
       </div>
-    </section>
+    </details>
   </aside>
 </main>
 
+<div class="modal" id="helpModal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+    <button class="icon-btn modal-x" id="helpClose" aria-label="닫기"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button>
+    <div id="helpBody"></div>
+  </div>
+</div>
 <div class="toast" id="toast" role="status" hidden></div>
 
 <script>
@@ -326,7 +403,7 @@ const Store = {
 /* ───────── 상태 ───────── */
 let meetings = [];
 let currentId = null;
-let view = "guide";          // guide | minutes | transcript
+let view = "minutes";        // minutes | transcript
 let editing = false;
 let pendingDelete = null;
 let busy = false;
@@ -611,7 +688,7 @@ const W = [["who","WHO","누가","참석자·담당자"],["when","WHEN","언제"
 
 function guideHTML(){
   return `<div class="guide">
-    <div><h2>사용 방법</h2></div>
+    <div><h2 id="helpTitle">사용 방법</h2></div>
     <p>‘녹음 시작’을 누르면 마이크가 켜지고 말하는 내용이 자동으로 글자가 됩니다. ‘정지’를 누르면 마이크가 꺼지고 누가·언제·어디서·무엇을·왜·어떻게(5W1H)로 회의록이 정리됩니다. 모든 내용은 이 기기의 Safari에 자동 저장됩니다.</p>
     <ol class="steps">
       <li><b>회의 정보 입력 (선택)</b><p><strong>+ 새 회의</strong>를 누르고 왼쪽 위 <strong>제목 · 일시 · 장소 · 참석자</strong> 칸에 입력합니다. 녹음 후에 입력해도 됩니다.</p></li>
@@ -632,45 +709,37 @@ function guideHTML(){
 }
 
 function renderDoc(){
-  const el = $("#doc");
+  const el = $("#doc"), tabsEl = $("#docTabs");
   if (!loaded) return;
   syncTA();
   const m = cur();
-  if (view === "guide" || !m) {
-    el.innerHTML = guideHTML() + (m ? "" : `<div class="guide" style="padding-top:0"><button class="btn btn-rec" style="justify-self:start" data-act="start">녹음 시작하기</button></div>`);
-    return;
-  }
-  const mBadge = m.summary ? (m.method === "ai" ? `<span class="badge b-ai">AI 정리</span>` : `<span class="badge b-rule">자동 분류 정리</span>`) : `<span class="badge b-none">회의록 미작성</span>`;
-  const lock = rState !== "idle" ? "" : "";
-  const head = `<div class="doc-head">
-      <div class="doc-no"><span>${esc(docNo(m))}</span>${mBadge}${m.duration ? `<span>녹음 ${durText(m.duration)}</span>` : ""}</div>
-      <label style="display:grid;gap:4px"><span class="in-label">${ICON.pen}회의 제목 (눌러서 수정)</span><input class="title-in" id="inTitle" value="${esc(m.title)}" placeholder="회의 제목을 입력하세요"></label>
-      <div class="meta-in">
-        <label><span class="in-label">일시</span><input type="datetime-local" id="inDate" value="${esc(m.datetime)}"></label>
-        <label><span class="in-label">장소</span><input id="inPlace" value="${esc(m.location)}" placeholder="예: 본사 3층 회의실"></label>
-        <label class="wide"><span class="in-label">참석자 (쉼표로 구분)</span><input id="inWho" value="${esc(m.attendees)}" placeholder="예: 박 책임, 김민수 선임"></label>
-      </div>
-      <div class="tabs" role="tablist">
-        <button class="tab" role="tab" data-view="minutes" aria-selected="${view === "minutes"}">5W1H 회의록</button>
-        <button class="tab" role="tab" data-view="transcript" aria-selected="${view === "transcript"}">원본 텍스트</button>
-        <div class="doc-tools">
-          ${view === "minutes" && m.summary ? `<button class="btn btn-sm ${editing ? "btn-primary" : ""}" id="bEdit">${ICON.pen}<span>${editing ? "수정 완료" : "내용 수정"}</span></button>` : ""}
-          <button class="btn btn-sm" data-dl="${view === "minutes" ? "md" : "txt"}">${ICON.dl}<span>파일로 저장</span></button>
-        </div>
-      </div>
-    </div>`;
+  if (!m) { tabsEl.innerHTML = ""; el.innerHTML = ""; return; }
+  tabsEl.innerHTML = `<div class="tabs" role="tablist">
+      <button class="tab" role="tab" data-view="minutes" aria-selected="${view === "minutes"}">5W1H 회의록</button>
+      <button class="tab" role="tab" data-view="transcript" aria-selected="${view === "transcript"}">원본 텍스트</button>
+      <div class="doc-tools">
+        ${view === "minutes" && m.summary ? `<button class="btn btn-sm ${editing ? "btn-primary" : ""}" id="bEdit">${ICON.pen}<span>${editing ? "수정 완료" : "내용 수정"}</span></button>` : ""}
+        <button class="btn btn-sm" data-dl="${view === "minutes" ? "md" : "txt"}">${ICON.dl}<span>파일로 저장</span></button>
+      </div></div>`;
   let body;
   if (view === "transcript") {
     const live = rState === "recording" && rMode === "dictation";
     body = `<div class="doc-body transcript">
-      ${live ? `<div class="dict">${ICON.mic}<div><b>지금 키보드의 마이크 버튼을 누르고 말하세요</b><span>말한 내용이 아래 칸에 글자로 들어갑니다. 발언이 바뀌면 엔터 — 새 줄에 시간이 붙습니다. 화면 키보드가 안 보이면 아래 칸을 한 번 누르세요. 외장 키보드는 🌐(또는 fn) 키를 두 번 누르면 받아쓰기가 켜집니다. 마이크를 켜지 않으면 시간 표시만 남고 글자는 기록되지 않습니다.</span></div></div>` : ""}
-      <textarea id="taTranscript" data-id="${m.id}" class="${live ? "live" : ""}" aria-label="원본 텍스트" placeholder="‘녹음 시작’을 누르고 키보드 마이크로 말하면 여기에 기록됩니다. 다른 곳의 글을 붙여넣거나 직접 입력해도 됩니다.">${esc(m.transcript)}</textarea>
-      <p class="hint">이 칸은 언제든 고칠 수 있고, 고친 내용은 자동 저장됩니다. 고친 뒤 ‘회의록 작성’을 다시 누르면 새로 정리합니다.</p></div>`;
+      ${live ? `<div class="dict">${ICON.mic}<div><b>키보드의 마이크 버튼을 누르고 말하세요</b><span>발언이 바뀌면 엔터를 누르면 새 줄에 시간이 붙습니다.</span></div></div>` : ""}
+      <textarea id="taTranscript" data-id="${m.id}" class="${live ? "live" : ""}" aria-label="원본 텍스트" placeholder="‘녹음 시작’을 누르면 말한 내용이 [분:초]와 함께 여기에 자동으로 쌓입니다. 다른 곳의 글을 붙여넣거나 직접 입력해도 됩니다.">${esc(m.transcript)}</textarea>
+      <p class="hint">이 칸은 언제든 고칠 수 있고 자동 저장됩니다. 고친 뒤 ‘회의록 작성’을 다시 누르면 새로 정리합니다.</p></div>`;
   } else if (!m.summary) {
     const has = m.transcript.replace(/\[[\d:]+\]/g, "").trim();
-    body = `<div class="guide"><h2>아직 회의록을 작성하지 않았습니다</h2>
-      <p>${has ? "원본 텍스트가 준비되어 있습니다. 아래 버튼을 누르면 5W1H로 정리합니다." : "‘녹음 시작’으로 받아쓰기를 하거나, ‘원본 텍스트’ 탭에 회의 내용을 붙여넣으세요."}</p>
-      <div>${has ? `<button class="btn btn-primary" data-act="write">회의록 작성 (5W1H)</button>` : `<button class="btn" data-view="transcript">원본 텍스트 탭으로</button>`}</div></div>`;
+    const cards = W.map(([k, en, ko, d]) => `<div class="w ph"><div class="w-h"><span class="w-k">${en}</span><span class="w-n">${ko}</span><span class="w-d">${d}</span></div><p class="empty">녹음 후 자동으로 채워집니다.</p></div>`).join("");
+    body = `<div class="doc-body">
+      <div class="ph-note">${has
+        ? `<span>원본 텍스트가 준비되어 있습니다. 5W1H로 정리하세요.</span><button class="btn btn-sm btn-primary" data-act="write">회의록 작성</button>`
+        : `<span><b>① 위에 회의 정보 입력</b> → <b>② 오른쪽 ‘녹음 시작’</b> → <b>③ ‘정지’</b>를 누르면 아래 칸이 자동으로 채워집니다.</span>`}</div>
+      <div class="w-grid">${cards}</div>
+      <div><h3 class="sec-h">실행 항목 · ACTION ITEMS</h3>
+        <div class="tbl-wrap"><table><thead><tr><th>#</th><th>담당</th><th>할 일</th><th>기한</th></tr></thead>
+        <tbody><tr><td colspan="4" style="color:var(--muted)">회의록을 작성하면 담당자·할 일·기한이 정리됩니다.</td></tr></tbody></table></div></div>
+    </div>`;
   } else {
     const s = m.summary;
     const cards = W.map(([k, en, ko, d]) => {
@@ -682,7 +751,7 @@ function renderDoc(){
       ? `<tr><td class="num">${i+1}</td><td><input data-a="${i}" data-f="who" value="${esc(a.who)}" aria-label="담당"></td><td><input data-a="${i}" data-f="what" value="${esc(a.what)}" aria-label="할 일"></td><td><input data-a="${i}" data-f="due" value="${esc(a.due)}" aria-label="기한"></td><td><button class="icon-btn" data-arm="${i}" aria-label="이 줄 삭제">${ICON.trash}</button></td></tr>`
       : `<tr><td class="num">${pad(i+1)}</td><td>${esc(a.who)}</td><td>${esc(a.what)}</td><td>${esc(a.due)}</td></tr>`).join("");
     body = `<div class="doc-body">
-      ${editing ? `<p class="hint" style="color:var(--accent)">수정 중입니다. 한 줄이 항목 하나입니다. 고친 내용은 자동 저장되며, 끝나면 ‘수정 완료’를 누르세요.</p>` : ""}
+      ${editing ? `<p class="hint" style="color:var(--accent)">수정 중입니다. 한 줄이 항목 하나입니다. 끝나면 ‘수정 완료’를 누르세요.</p>` : ""}
       <div class="overview"><h3 class="sec-h">개요</h3>${editing ? `<textarea class="edit-ta" data-k="overview" aria-label="개요">${esc(s.overview)}</textarea>` : `<p>${esc(s.overview)}</p>`}</div>
       <div class="w-grid">${cards}</div>
       <div><h3 class="sec-h">실행 항목 · ACTION ITEMS</h3>
@@ -691,7 +760,7 @@ function renderDoc(){
         ${editing ? `<button class="btn btn-sm" style="margin-top:8px" id="bAddAct">+ 실행 항목 추가</button>` : ""}</div>
     </div>`;
   }
-  el.innerHTML = head + body;
+  el.innerHTML = body;
 }
 
 function renderClock(){ $("#clock").textContent = fmtClock(rState === "idle" ? (cur()?.duration || 0) : segTime()); }
@@ -737,7 +806,7 @@ function renderList(){
   el.innerHTML = sorted().map(m => {
     const n = fileNames(m);
     const conf = pendingDelete === m.id ? `<div class="confirm"><span>‘${esc(m.title)}’의 원본과 회의록을 모두 지울까요? 되살릴 수 없습니다.</span><button class="btn btn-sm btn-danger" data-del-yes="${m.id}">삭제</button><button class="btn btn-sm" data-del-no="1">취소</button></div>` : "";
-    return `<div class="mtg${m.id === currentId && view !== "guide" ? " active" : ""}">
+    return `<div class="mtg${m.id === currentId ? " active" : ""}">
       <div class="mtg-h">
         <button class="mtg-open" data-open="${m.id}"><b>${esc(m.title || "제목 없음")}</b><small>${esc(fmtDate(m.datetime))}${m.duration ? " · " + durText(m.duration) : ""}</small></button>
         <button class="icon-btn" data-del="${m.id}" aria-label="${esc(m.title)} 삭제" title="삭제">${ICON.trash}</button>
@@ -757,7 +826,22 @@ function renderSettings(){
   $("#modeHint").textContent = DIRECT_MIC ? "회의록은 이 기기의 브라우저에 저장됩니다. 중요한 회의록은 ‘파일로 저장’으로 백업해 두세요." : "";
   if (!DIRECT_MIC) showSetup("unsupported");
 }
-function renderAll(){ renderDoc(); renderRec(); renderLive(); renderWriteBtn(); renderList(); }
+/* 빈 회의가 있으면 재사용, 없으면 새로 만듦 (빈 회의가 쌓이지 않게) */
+function isBlank(m){ return !m.summary && !m.transcript.replace(/\[[\d:]+\]/g, "").trim() && !m.location && !m.attendees; }
+function freshMeeting(){
+  const blank = sorted().find(isBlank);
+  if (blank) { const n = newMeeting(); blank.datetime = n.datetime; if (/^회의 \d+월 \d+일/.test(blank.title)) blank.title = n.title; save(blank); return blank; }
+  const m = newMeeting(); meetings.push(m); save(m, true); return m;
+}
+function renderInfo(){
+  const m = cur();
+  for (const [id, k] of [["#inTitle","title"],["#inDate","datetime"],["#inPlace","location"],["#inWho","attendees"]]) {
+    const el = $(id); el.disabled = !m; if (document.activeElement !== el) el.value = m ? (m[k] || "") : "";
+  }
+  $("#docNo").textContent = m ? docNo(m) : "—";
+  $("#docBadges").innerHTML = !m ? "" : (m.summary ? (m.method === "ai" ? `<span class="badge b-ai">AI 정리</span>` : `<span class="badge b-rule">자동 분류 정리</span>`) : `<span class="badge b-none">회의록 미작성</span>`) + (m.duration ? ` <span class="badge b-rule">녹음 ${durText(m.duration)}</span>` : "");
+}
+function renderAll(){ renderInfo(); renderDoc(); renderRec(); renderLive(); renderWriteBtn(); renderList(); }
 
 /* ───────── 이벤트 ───────── */
 $("#bStart").onclick = startRecording;
@@ -767,11 +851,17 @@ const flushAll = () => { syncTA(); for (const id of Object.keys(timers)) { clear
 document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flushAll(); });
 window.addEventListener("pagehide", flushAll);
 $("#bWrite").onclick = writeMinutes;
-$("#bHelp").onclick = () => { view = "guide"; editing = false; renderDoc(); renderList(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+const helpModal = $("#helpModal");
+function openHelp(){ $("#helpBody").innerHTML = guideHTML(); helpModal.hidden = false; $("#helpClose").focus(); }
+function closeHelp(){ helpModal.hidden = true; $("#bHelp").focus(); }
+$("#bHelp").onclick = openHelp;
+$("#helpClose").onclick = closeHelp;
+helpModal.addEventListener("click", e => { if (e.target === helpModal) closeHelp(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !helpModal.hidden) closeHelp(); });
 $("#bNew").onclick = () => {
   if (rState !== "idle") { toast("녹음 중에는 새 회의를 만들 수 없습니다. 먼저 ‘정지’를 눌러 주세요."); return; }
-  const m = newMeeting(); meetings.push(m); currentId = m.id; view = "transcript"; editing = false; save(m, true); renderAll();
-  const t = $("#inTitle"); t.focus(); t.select(); toast("새 회의를 만들었습니다. 제목을 입력하세요.");
+  const m = freshMeeting(); currentId = m.id; view = "minutes"; editing = false; renderAll();
+  const t = $("#inTitle"); t.focus(); t.select(); toast("새 회의입니다. 제목·일시·장소·참석자를 입력하고 ‘녹음 시작’을 누르세요.", 4500);
 };
 $("#bImport").onclick = () => { if (rState !== "idle") { toast("녹음 중에는 불러올 수 없습니다."); return; } $("#fileIn").click(); };
 $("#fileIn").onchange = async e => {
@@ -785,7 +875,7 @@ $("#fAuto").onchange = e => { settings.auto = e.target.checked; LS.set("mm.setti
 $("#fKey").oninput = e => { settings.key = e.target.value.trim(); LS.set("mm.settings", settings); renderWriteBtn(); };
 $("#fLang").onchange = e => { settings.lang = e.target.value; LS.set("mm.settings", settings); };
 
-const doc = $("#doc");
+const doc = $("#docPanel");
 doc.addEventListener("click", e => {
   const t = e.target.closest("button"); if (!t) return;
   const m = cur();
@@ -801,7 +891,7 @@ doc.addEventListener("click", e => {
 doc.addEventListener("input", e => {
   const m = cur(); if (!m) return; const t = e.target;
   const map = { inTitle: "title", inDate: "datetime", inPlace: "location", inWho: "attendees" };
-  if (map[t.id]) { m[map[t.id]] = t.value; save(m); renderList(); }
+  if (map[t.id]) { m[map[t.id]] = t.value; save(m); renderList(); if (t.id === "inDate") $("#docNo").textContent = docNo(m); }
   else if (t.id === "taTranscript") { m.transcript = t.value; save(m); renderLive(); }
   else if (t.dataset.k === "overview") { m.summary.overview = t.value; save(m); }
   else if (t.dataset.k) { m.summary[t.dataset.k] = t.value.split("\n").map(s => s.replace(/^[-•·]\s*/, "").trim()).filter(Boolean); save(m); }
@@ -821,6 +911,7 @@ $("#list").addEventListener("click", async e => {
     const m = meetings.find(x => x.id === id);
     currentId = id; view = t.dataset.kind || (m?.summary ? "minutes" : "transcript"); editing = false; pendingDelete = null; renderAll();
     if (window.matchMedia("(max-width:900px)").matches) doc.scrollIntoView({ behavior: "smooth" });
+    $("#doc").scrollTop = 0;
   } else if (t.dataset.dlf) {
     const m = meetings.find(x => x.id === t.dataset.dlf); if (m) downloadFile(m, t.dataset.kind);
   } else if (t.dataset.del) {
@@ -830,7 +921,7 @@ $("#list").addEventListener("click", async e => {
     const did = t.dataset.delYes; clearTimeout(timers[did]);
     meetings = meetings.filter(m => m.id !== did); pendingDelete = null;
     try { await Store.del(did); toast("삭제했습니다."); } catch { toast("삭제하지 못했습니다. 다시 시도해 주세요."); }
-    if (currentId === did) { currentId = sorted()[0]?.id || null; if (!currentId) view = "guide"; else if (view === "guide") view = "minutes"; }
+    if (currentId === did) { const nx = sorted()[0]; currentId = nx ? nx.id : freshMeeting().id; view = "minutes"; }
     renderAll();
   } else if (t.dataset.delNo) { pendingDelete = null; renderList(); }
 });
@@ -842,8 +933,7 @@ $("#list").addEventListener("click", async e => {
   try { meetings = await Store.all(); }
   catch (e) { meetings = []; toast("저장된 회의록을 불러오지 못했습니다. 페이지를 다시 열어 주세요.", 6000); }
   loaded = true;
-  const first = sorted()[0];
-  if (first) { currentId = first.id; view = first.summary ? "minutes" : "transcript"; }
+  currentId = freshMeeting().id; view = "minutes";   // 처음 화면 = 새 회의 기본 정보 입력
   setSave("", savedLabel());
   renderAll();
 })();
